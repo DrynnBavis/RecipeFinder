@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node index.js"
+    "start": "node index.js"
   },
-  "main": "index.js",
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express-favicon": "^2.0.0",
     "nodemon": "^1.11.0"
   }
 }
