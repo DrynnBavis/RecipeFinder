@@ -1,5 +1,5 @@
 body {
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;	
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	padding-top: 10%;
 	text-align: center;
 }
@@ -10,7 +10,7 @@ li {
 	text-align: left;
 }
 #search-form {
-	padding-bottom: 10px;
+	padding: 2em 0;
 }
 .input {
   border: 1px solid grey;
@@ -18,6 +18,7 @@ li {
   text-shadow: none;
   padding: 1em;
   border-radius: 5px;
+  width: 320px;
 }
 
 .button {
@@ -42,12 +43,26 @@ button:focus {
 	margin-right: auto;
 }
 .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #5a6ca4; /* Blue */
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
+  display: inline-block;
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #5a6ca4;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+#recipe-popup {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50%;
+	height: 75%;
+	background-color: red;
+}
+#petite {
+  font-size: 8px;
 }
 
 @keyframes spin {
