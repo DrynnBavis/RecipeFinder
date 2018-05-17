@@ -16,6 +16,12 @@ var Api = (function () {
 				$('#input').val("");
 				_.GetRecipe(search);
 			});
+			//Close popup clicked
+			$(".close-button").click(function() {
+				$('.recipe-popup').removeClass('visible');
+				$('.recipe-popup').addClass('hidden');
+				console.log("closed");
+			});
 		},
 		GetRecipe: function(searchWord) {
 			console.log(searchWord);
@@ -42,7 +48,8 @@ var Api = (function () {
 				}
 
 				$('#loader').removeClass('loader');
-				$('#recipe-popup').show();
+				$('.recipe-popup').addClass('visible');
+				$('.recipe-popup').removeClass('hidden');
 			});
 		}
 	}

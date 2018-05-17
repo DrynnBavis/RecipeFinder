@@ -37,6 +37,38 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+.close-button {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  right: 0;
+  margin: 1em;
+  box-sizing: border-box;
+  line-height: 50px;
+  display: inline-block;
+}
+.close-button:before,
+.close-button:after {
+  transform: rotate(-45deg);
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -5px;
+  margin-left: -25px;
+  display: block;
+  height: 10px;
+  width: 50px;
+  background-color: #fff;
+  transition: all 0.2s ease-out;
+}
+.close-button:after {
+  transform: rotate(45deg);
+}
+.close-button:hover:before,
+.close-button:hover:after {
+  transform: rotate(0deg);
+}
 .result {
 	display: block;
 	margin-left: auto;
@@ -51,15 +83,37 @@ button:focus {
   height: 120px;
   animation: spin 2s linear infinite;
 }
-#recipe-popup {
-	display: none;
+.recipe-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	left: 0;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	pointer-events: none;
+}
+.recipe-popup {
+	align-content: center;
+	display: inline-block;
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	width: 50%;
 	height: 75%;
-	background-color: red;
+	background-color: #eddab1;
+	border-radius: 5px;
+}
+.hidden {
+	opacity: 0;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.3);
+	pointer-events: none;
+}
+.visible {
+	opacity: 1;
+	transition: all 0.3s ease-in-out;
+    transform: scale(1);
+	pointer-events: all;
 }
 #petite {
   font-size: 8px;
