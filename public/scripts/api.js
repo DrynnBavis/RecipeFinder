@@ -1,6 +1,7 @@
 var Api = (function () {
 	var _ = {
 		//private stuff here
+		allergyList : "",
 		Init: function() {
 			console.log("api inited");
 			_.BindEvents();
@@ -14,6 +15,7 @@ var Api = (function () {
 				$('#loader').addClass('loader');
 				var search = $('#input').val().trim();
 				$('#input').val("");
+				console.log(_.allergyList);
 				_.GetRecipe(search);
 			});
 			//Close popup clicked
@@ -22,12 +24,24 @@ var Api = (function () {
 				$('.recipe-popup').addClass('hidden');
 				console.log("closed");
 			});
+			$(".allergy-flag").click(function() {
+				//open up $("allergy-select")
+				console.log("allergy list opened");
+			});
+			$(".allergy-item").click(function() {
+				if (this.checked){
+					_.allergyList = _.allergyList.concat("&health=" + this.value);
+				}
+				else{
+					_.allergyList = _.allergyList.replace("&health=" + this.value, "");
+				}
+			});
 		},
 		GetRecipe: function(searchWord) {
 			console.log(searchWord);
 			$.ajax({
 				type: 'GET',
-				url: 'https://api.edamam.com/search?q=' + searchWord + '&app_id=a0908305&app_key=ed78ed737cdb4d9933fbb78749103877',
+				url: 'https://api.edamam.com/search?q=' + searchWord + '&app_id=a0908305&app_key=ed78ed737cdb4d9933fbb78749103877&health=' + _.allergyList,
 				contentType: 'application/json; charset=utf-8',
 				dataType: 'json'
 			}).then(function (response) {
