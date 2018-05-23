@@ -4,6 +4,7 @@ var Api = (function () {
 		allergyList : "",
 		Init: function() {
 			console.log("api inited");
+			$(".allergy-select").hide();
 			_.BindEvents();
 		},
 		BindEvents: function() {
@@ -12,6 +13,7 @@ var Api = (function () {
 				$('#recipe-result').html("");
 				e.preventDefault();
 				console.log("submit called!");
+				$(".allergy-select").hide();
 				$('#loader').addClass('loader');
 				var search = $('#input').val().trim();
 				$('#input').val("");
@@ -25,7 +27,7 @@ var Api = (function () {
 				console.log("closed");
 			});
 			$(".allergy-flag").click(function() {
-				//open up $("allergy-select")
+				$(".allergy-select").toggle();
 				console.log("allergy list opened");
 			});
 			$(".allergy-item").click(function() {
@@ -41,7 +43,7 @@ var Api = (function () {
 			console.log(searchWord);
 			$.ajax({
 				type: 'GET',
-				url: 'https://api.edamam.com/search?q=' + searchWord + '&app_id=a0908305&app_key=ed78ed737cdb4d9933fbb78749103877&health=' + _.allergyList,
+				url: 'https://api.edamam.com/search?q=' + searchWord + '&app_id=a0908305&app_key=ed78ed737cdb4d9933fbb78749103877', //&health=' + _.allergyList,
 				contentType: 'application/json; charset=utf-8',
 				dataType: 'json'
 			}).then(function (response) {
@@ -54,7 +56,7 @@ var Api = (function () {
 					ingred.forEach(function(item) {
 						html += "<li>" + item.text + "</li>";
 					});
-					html += "</ul></br><a href=\x22" + link + "\x22 target=\x22_blank\x22>Take me to the recipe!</a>";
+					html += "</ul></br><a class=\"recipe-link\" href=\x22" + link + "\x22 target=\x22_blank\x22>Take me to the recipe!</a>";
 					$('#recipe-result').html(html);
 				}
 				else{
